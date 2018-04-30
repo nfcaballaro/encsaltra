@@ -28,7 +28,7 @@ class ci_cuadro extends saludytrabajo_ci
 		
 		// Manejando el canvas directamente
 		$grafico->conf()->canvas()->ygrid->SetFill(true, '#EFEFEF@0.7', '#BBCCFF@0.3');
-		$grafico->conf()->canvas()->xaxis->SetTickLabels(array('MENOS DE 25','26 a 35','36 a 55', 'MAS DE 56'));
+		$grafico->conf()->canvas()->xaxis->SetTickLabels(array('MENOS DE 25','26 a 35','36 a 45','46 a 55', 'MAS DE 56'));
 		
 
 

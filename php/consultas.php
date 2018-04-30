@@ -1931,7 +1931,8 @@ sexo,
 (case
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) <= 25) then '0 a 25'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 26 and 35) then '26 a 35'
-when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 55) then '36 a 55'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 45) then '36 a 45'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 46 and 55) then '46 a 55'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) > 55) then 'MAS DE 56'   
    END
 ) as edades,
@@ -2670,7 +2671,8 @@ sexo,
 (case
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) <= 25) then '0 a 25'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 26 and 35) then '26 a 35'
-when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 55) then '36 a 55'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 45) then '36 a 45'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 46 and 55) then '46 a 55'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) > 55) then 'MAS DE 56'   
    END
 ) as edades,
@@ -3414,7 +3416,8 @@ from
 (case
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) <= 25) then '0 a 25'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 26 and 35) then '26 a 35'
-when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 55) then '36 a 55'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 45) then '36 a 45'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 46 and 55) then '46 a 55'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) > 55) then 'MAS DE 56'   
    END
 ) as edades,
@@ -4147,7 +4150,8 @@ from
 (case
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) <= 25) then '0 a 25'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 26 and 35) then '26 a 35'
-when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 55) then '36 a 55'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 36 and 45) then '36 a 45'
+when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) between 46 and 55) then '46 a 55'
 when (EXTRACT(YEAR FROM age(timestamp 'now()',date(t.fecha_nacimiento) ) ) > 55) then 'MAS DE 56'   
    END
 ) as edades,
@@ -18454,7 +18458,9 @@ select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM ag
 union all 
 select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 26 and 35
 union all 
-select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 55
+select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 45
+union all
+select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 46 and 55
 union all 
 select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) > 55";
 			}else {
@@ -18465,7 +18471,9 @@ select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM ag
                 union all 
                 select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 26 and 35 and usuario like '".$usuario."'
                 union all 
-                select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 55 and usuario like '".$usuario."'
+                select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 45 and usuario like '".$usuario."'
+		        union all 
+                select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 46 and 55 and usuario like '".$usuario."'
                 union all 
                 select count(*) as cantidad from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) > 55 and usuario like '".$usuario."'";
 				
@@ -18613,12 +18621,21 @@ from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fec
 
 union all
 
-select '36 a 55' as rangoedad, 
+select '36 a 45' as rangoedad, 
+count(*) as cantidad, 
+ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg),2) as porcentaje, 
+(select ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg),2) 
+from tra_sal_justicia_arg as e1 where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 0 and 45) as porc_acum  
+from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 45
+
+union all
+
+select '46 a 55' as rangoedad, 
 count(*) as cantidad, 
 ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg),2) as porcentaje, 
 (select ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg),2) 
 from tra_sal_justicia_arg as e1 where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 0 and 55) as porc_acum  
-from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 36 and 55
+from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) between 46 and 55
 
 union all
 
@@ -18654,13 +18671,23 @@ from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fec
     
     union all
     
-    select '36 a 55' as rangoedad, 
+    select '36 a 45' as rangoedad, 
+    count(*) as cantidad, 
+    ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg where usuario like '".$usuario."'),2) as porcentaje, 
+    (select ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg where usuario like '".$usuario."'),2) 
+    from tra_sal_justicia_arg as e1 where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) <= 45 and usuario like '".$usuario."') as porc_acum  
+    from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) <= 45
+    and EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) > 35 and usuario like '".$usuario."'
+	
+    union all
+    
+    select '46 a 55' as rangoedad, 
     count(*) as cantidad, 
     ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg where usuario like '".$usuario."'),2) as porcentaje, 
     (select ROUND(cast(100*count(*) as numeric(10,2))/ (select count(*) from tra_sal_justicia_arg where usuario like '".$usuario."'),2) 
     from tra_sal_justicia_arg as e1 where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) <= 55 and usuario like '".$usuario."') as porc_acum  
     from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) <= 55
-    and EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) > 35 and usuario like '".$usuario."'
+    and EXTRACT(YEAR FROM age(timestamp 'now()',date(fecha_nacimiento) ) ) > 45 and usuario like '".$usuario."'
     
     union all    
     
