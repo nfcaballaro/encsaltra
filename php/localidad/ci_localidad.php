@@ -1,5 +1,5 @@
 <?php
-class ci_localidad extends encsaltra_ci
+class ci_localidad extends saludytrabajo_ci
 {
 	protected $s__datos_filtro;
 
@@ -28,18 +28,10 @@ class ci_localidad extends encsaltra_ci
 	function conf__cuadro(toba_ei_cuadro $cuadro)
 	{
 		if (isset($this->s__datos_filtro)) {
-			$cuadro->set_datos($this->dep('datos')->tabla('localidad')->get_listado($this->s__datos_filtro));
+			$cuadro->set_datos($this->dep('datos')->tabla('tra_sal_localidad')->get_listado($this->s__datos_filtro));
 		} else {
-			$cuadro->set_datos($this->dep('datos')->tabla('localidad')->get_listado());
+			$cuadro->set_datos($this->dep('datos')->tabla('tra_sal_localidad')->get_listado());
 		}
-	}
-
-	function evt__cuadro__eliminar($datos)
-	{
-		$this->dep('datos')->resetear();
-		$this->dep('datos')->cargar($datos);
-		$this->dep('datos')->eliminar_todo();
-		$this->dep('datos')->resetear();
 	}
 
 	function evt__cuadro__seleccion($datos)
@@ -53,7 +45,7 @@ class ci_localidad extends encsaltra_ci
 	function conf__formulario(toba_ei_formulario $form)
 	{
 		if ($this->dep('datos')->esta_cargada()) {
-			$form->set_datos($this->dep('datos')->tabla('localidad')->get());
+			$form->set_datos($this->dep('datos')->tabla('tra_sal_localidad')->get());
 		} else {
 			$this->pantalla()->eliminar_evento('eliminar');
 		}
@@ -61,7 +53,7 @@ class ci_localidad extends encsaltra_ci
 
 	function evt__formulario__modificacion($datos)
 	{
-		$this->dep('datos')->tabla('localidad')->set($datos);
+		$this->dep('datos')->tabla('tra_sal_localidad')->set($datos);
 	}
 
 	function resetear()

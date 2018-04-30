@@ -1,6 +1,6 @@
 <?php
 # apex_proyecto: Proyecto PRIMARIO
-define('apex_pa_proyecto', '__proyecto__');
+define('apex_pa_proyecto', 'saludytrabajo');
 
 //--------------------------------------------------------------------------
 //------ Invocacion del nucleo del toba ------------------------------------

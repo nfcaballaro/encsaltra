@@ -1,7 +1,7 @@
 <?php
 
 # Proyecto
-define('apex_pa_proyecto', 'encsaltra');
+define('apex_pa_proyecto', 'saludytrabajo');
 
 # Ejecuta con metadatos compilados
 #define('apex_pa_metadatos_compilados', 1);
