@@ -19223,7 +19223,44 @@ from tra_sal_justicia_arg where EXTRACT(YEAR FROM age(timestamp 'now()',date(fec
 		return $estados;
 	}	
 
+   /**
+	Retorna una lista de trabajo familiar y domestico
+	**/
+	static function get_trabajo_familiar_domestico()
+	{
+		$estados[0]['id'] = '0';
+		$estados[0]['descripcion'] = 'Soy la/el principal responsable y hago la mayor parte de las tareas familiares y domesticas';	
+		$estados[1]['id'] = '1';
+		$estados[1]['descripcion'] = 'Hago mas o menos la mitad de las tareas familiares y domesticas';
+		$estados[2]['id'] = '2';
+		$estados[2]['descripcion'] = 'Hago mas o menos una cuarta parte de las tareas familiares y domesticas';
+		$estados[3]['id'] = '3';
+		$estados[3]['descripcion'] = 'Solo hago tareas muy puntuales';
+		$estados[4]['id'] = '4';
+		$estados[4]['descripcion'] = 'No hago ninguna o casi ninguna de estas tareas';
 
+		return $estados;
+	}
+	
+			/**
+	Retorna una lista de anexo_ba
+	**/
+	static function get_anexo_ba()
+	{	 
+	    $estados[0]['id'] = '0';
+		$estados[0]['descripcion'] = 'SIN DATOS';
+		$estados[1]['id'] = '1';
+		$estados[1]['descripcion'] = 'SIEMPRE';
+		$estados[2]['id'] = '2';
+		$estados[2]['descripcion'] = 'MUCHAS VECES';
+		$estados[3]['id'] = '3';
+		$estados[3]['descripcion'] = 'ALGUNAS VECES';
+		$estados[4]['id'] = '4';
+		$estados[4]['descripcion'] = 'SOLO ALGUNA VEZ';
+		$estados[5]['id'] = '5';
+		$estados[5]['descripcion'] = 'NUNCA';		
+		return $estados;
+	}
 	
 }
 ?>

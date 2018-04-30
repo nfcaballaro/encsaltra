@@ -324,5 +324,18 @@ when (t_tsja.estamento = 2) then 'Funcionario/a'
 		return toba::db('saludytrabajo')->consultar($sql);
 	}
 
+		function get_descripciones()
+		{
+			$sql = "SELECT id_tra_sal_justicia_arg, id_tra_sal_justicia_arg as observaciones FROM tra_sal_justicia_arg ORDER BY observaciones";
+			return toba::db('saludytrabajo')->consultar($sql);
+		}
+	
+		function get_descripciones_ba()
+		{
+			$sql = "SELECT id_tra_sal_justicia_arg, id_tra_sal_justicia_arg as observaciones FROM tra_sal_justicia_arg WHERE usuario LIKE '%buenos_aires%' ORDER BY observaciones";
+			return toba::db('saludytrabajo')->consultar($sql);
+		}
+
+
 }
 ?>
